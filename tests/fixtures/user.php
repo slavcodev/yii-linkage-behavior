@@ -1,2 +1,6 @@
 <?php
-return array();
+return array(
+	array(
+		'id' => 1,
+	),
+);
