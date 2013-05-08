@@ -1,0 +1,10 @@
+language: php
+
+php:
+  - 5.2
+
+before_script:
+  - git clone --depth=100 https://github.com/yiisoft/yii.git yii
+  - cd tests
+
+script: phpunit --colors --coverage-text controllers/LinkageTestController.php
