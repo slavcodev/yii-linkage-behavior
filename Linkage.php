@@ -153,15 +153,15 @@ class Linkage extends CBehavior
 				}
 			}
 		} else {
-			if ($delete && !$model->getIsNewRecord() && !$model->delete()) {
-				throw new CException(sprintf(self::ERROR_DELETE, get_class($model)));
-			} else {
+			if (!$delete) {
 				foreach ($this->getRelationKeys($relation) as $fk => $pk) {
 					$model->$fk = null;
 				}
 				if (!$model->save(false)) {
 					throw new CException(sprintf(self::ERROR_SAVE, get_class($model)));
 				}
+			} elseif ($model->getIsNewRecord() || !$model->delete()) {
+				throw new CException(sprintf(self::ERROR_DELETE, get_class($model)));
 			}
 		}
 
