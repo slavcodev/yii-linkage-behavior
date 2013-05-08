@@ -1,5 +1,5 @@
-## [![Build Status](https://travis-ci.org/slavcodev/yii-linkage-behavior.png?branch=master)](https://travis-ci.org/slavcodev/yii-linkage-behavior) Linkage AR behavior
-
+## Linkage AR behavior
+[![Build Status](https://travis-ci.org/slavcodev/yii-linkage-behavior.png?branch=master)](https://travis-ci.org/slavcodev/yii-linkage-behavior)
 
 
 ### Usage
