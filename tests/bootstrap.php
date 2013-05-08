@@ -24,7 +24,7 @@ Yii::createWebApplication(
 		'import' => array(
 			'application.components.*',
 			'application.models.*',
-			'ext.linkage-behavior.Linkage',
+			'ext.' . basename(dirname($basePath)) . '.Linkage',
 		),
 		'components' => array(
 			'fixture' => array(
