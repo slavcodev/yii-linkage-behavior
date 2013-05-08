@@ -14,6 +14,11 @@
  * @property string $title
  * @property int $user_id
  *
+ * Relations:
+ * @property LinkageTestPostTag[] $tags
+ * @property LinkageTestComment[] $comments
+ * @property LinkageTestUser $user
+ *
  * Behaviors:
  * @property Linkage $linkage
  * @method LinkageTestPost link($name, $model, array $extraColumns = array())
@@ -99,5 +104,10 @@ class LinkageTestPostTag extends CActiveRecord
 	public function tableName()
 	{
 		return 'post_tag';
+	}
+
+	public function primaryKey()
+	{
+		return array('post_id', 'tag_id');
 	}
 }

@@ -14,16 +14,10 @@
  */
 class LinkageTestController extends CDbTestCase
 {
-	public $fixtures = array(
-		':user',
-		':user_profile',
-		':post',
-		':post_comment',
-		':post_tag',
-	);
-
 	public function testLink()
 	{
+		$this->getFixtureManager()->truncateTables();
+
 		$user = new LinkageTestUser();
 		$this->assertTrue($user->save(), 'Save primary model (user).');
 
@@ -56,7 +50,7 @@ class LinkageTestController extends CDbTestCase
 		}
 		$this->assertCount(3, $post->tagz, 'Link tags through.');
 
-
+		// Test databases records.
 		$post = LinkageTestPost::model()
 			->with('comments', 'tags', 'user')
 			->findByPk(1);
@@ -69,5 +63,50 @@ class LinkageTestController extends CDbTestCase
 
 	public function testUnlink()
 	{
+		$this->getFixtureManager()->load(array(
+				':user',
+				':user_profile',
+				':post',
+				':post_comment',
+				':post_tag',
+			));
+
+		$user = LinkageTestUser::model()
+			->with(array(
+					'posts' => array(
+						'with' => array('tags', 'comments'),
+					)
+				))
+			->findByPk(1);
+
+		$this->assertNotNull($user);
+		$this->assertCount(2, $user->posts);
+
+		$user->unlink('posts', $user->posts[1], true);
+		$this->assertCount(1, $user->posts, 'Unlink user post');
+
+		$post = $user->posts[0];
+
+		$post->unlink('comments', $post->comments[1], true);
+		$this->assertCount(1, $post->comments, 'Unlink comment');
+
+		$post->unlink('tags', $post->tags[1]);
+		$this->assertCount(2, $post->tags, 'Unlink tag');
+
+		$post->unlink('tagz', $post->tagz[1], true);
+		$this->assertCount(1, $post->tagz, 'Unlink tag');
+
+		// Test databases records.
+		$user = LinkageTestUser::model()
+			->with(array(
+					'posts' => array(
+						'with' => array('tags', 'comments'),
+					)
+				))
+			->findByPk(1);
+
+		$this->assertCount(1, $user->posts, 'Post count');
+		$this->assertCount(1, $user->posts[0]->tags, 'Tags count');
+		$this->assertCount(1, $user->posts[0]->comments, 'Comments count');
 	}
 }

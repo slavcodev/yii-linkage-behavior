@@ -12,6 +12,9 @@
  * Attributes:
  * @property int $id
  *
+ * Relations:
+ * @property LinkageTestPost[] $posts
+ *
  * Behaviors:
  * @property Linkage $linkage
  * @method LinkageTestUser link($name, $model, array $extraColumns = array())
