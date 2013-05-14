@@ -47,7 +47,7 @@ class Linkage extends CBehavior
 		}
 
 		if ($relation instanceof CManyManyRelation) {
-			if ($model->getIsNewRecord() && (!$save || !$model->save(false))) {
+			if ($save && !$model->save(false)) {
 				throw new CException(sprintf(self::ERROR_SAVE, get_class($model)));
 			}
 
@@ -65,7 +65,7 @@ class Linkage extends CBehavior
 				throw new CException(sprintf(self::ERROR_SAVE_ASSN, $pivotTable));
 			}
 		} elseif ($relation->through !== null) {
-			if ($model->getIsNewRecord() && (!$save || !$model->save(false))) {
+			if ($save && !$model->save(false)) {
 				throw new CException(sprintf(self::ERROR_SAVE, get_class($model)));
 			}
 
@@ -91,7 +91,7 @@ class Linkage extends CBehavior
 			$fk = $relation->foreignKey;
 			$model->$fk = $owner->getPrimaryKey();
 
-			if ($model->getIsNewRecord() && (!$save || !$model->save(false))) {
+			if ($save && !$model->save(false)) {
 				throw new CException(sprintf(self::ERROR_SAVE, get_class($model)));
 			}
 		}
