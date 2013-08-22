@@ -9,8 +9,7 @@
 		{
 			"name": "Veaceslav Medvedev",
 			"email": "slavcopost@gmail.com"
-		},
-
+		}
 	],
 	"require": {
 		"php": ">=5.1.0"
