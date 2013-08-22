@@ -1,8 +1,8 @@
 {
-	"name": "yiiext/slug-behavior",
-	"description": "Slug Behavior Yii Extension",
-	"keywords": ["slug", "clean-url", "yii"],
-	"homepage": "https://github.com/yiiext/slug-behavior",
+	"name": "yiiext/linkage-behavior",
+	"description": "Linkage Behavior Yii Extension",
+	"keywords": ["linkage", "relations", "yii"],
+	"homepage": "https://github.com/slavcodev/yii-linkage-behavior",
 	"type": "library",
 	"license": "BSD-3-Clause",
 	"authors": [
@@ -12,13 +12,7 @@
 		},
 
 	],
-	"support": {
-		"issues": "https://github.com/yiiext/slug-behavior/issues",
-		"wiki": "https://github.com/yiiext/slug-behavior/wiki",
-		"source": "https://github.com/yiiext/slug-behavior"
-	},
 	"require": {
-		"php": ">=5.1.0",
-		"yiisoft/yii": "master"
+		"php": ">=5.1.0"
 	}
 }
